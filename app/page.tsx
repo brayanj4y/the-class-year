@@ -1125,7 +1125,7 @@ export default function TimelinePage() {
             </Link>
           </div>
         </div>
-        <div className="text-center text-[8px] mt-2 text-gray-400">© 2023 BrayanJay All Rights Reserved</div>
+        <div className="text-center text-[8px] mt-2 text-gray-400">© 2025 BrayanJay All Rights Reserved</div>
       </footer>
     </div>
   )
