@@ -1006,7 +1006,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/2020s.jpg?height=600&width=400"
+                    src="/2020s.jpeg.jpg?height=600&width=400"
                     alt="2020s Teens"
                     fill
                     className="object-cover border-2 border-[#4CC9F0]"
