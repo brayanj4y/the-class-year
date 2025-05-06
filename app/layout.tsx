@@ -8,7 +8,28 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "The Class @Year — A Timeline of Teenagers",
   description: "A timeline of teenagers from the 1970s to the 2020s",
-    generator: 'v0.dev'
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      new URL("icons/favicon.ico", "https://example.com"), // if you have a CDN
+      { url: "icons/favicon-96x96.png", type: "image/png", sizes: "32x32" },
+      { url: "icons/favicon-96x96.png", type: "image/png", sizes: "16x16" },
+    ],
+    apple: [
+      { url: "icons/apple-touch-icon.png" },
+    ],
+    other: [
+      {
+        rel: "icons/favicon-96x96",
+        url: "icons/favicon-96x96.png",
+      },
+      {
+        rel: "icons/favicon-96x96",
+        url: "icons/favicon-96x96.png",
+      },
+    ],
+  },
+  manifest: "icons/site.webmanifest",
 }
 
 export default function RootLayout({

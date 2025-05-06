@@ -48,6 +48,126 @@ export default function TimelinePage() {
         <motion.div className="h-full bg-white" style={{ scaleX: scrollYProgress, transformOrigin: "0%" }} />
       </div>
 
+      {/* Hero Section */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] bg-black text-white overflow-hidden">
+        {/* Sticker-like elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[
+            { text: "WHATEVER", color: "#E56B6F", rotate: "3deg", top: "15%", left: "10%" },
+            { text: "AS IF!", color: "#4ECDC4", rotate: "-5deg", top: "25%", left: "75%" },
+            { text: "TOTALLY RAD", color: "#FFE66D", rotate: "2deg", top: "65%", left: "15%" },
+            { text: "NO CAP", color: "#F72585", rotate: "-3deg", top: "40%", left: "80%" },
+            { text: "GROOVY", color: "#E76F51", rotate: "4deg", top: "70%", left: "70%" },
+            { text: "BRB", color: "#A8DADC", rotate: "-2deg", top: "20%", left: "40%" },
+          ].map((sticker, i) => (
+            <motion.div
+              key={i}
+              className="absolute px-1.5 py-0.5 text-[8px] sm:text-[10px] font-bold border border-black z-10"
+              style={{
+                backgroundColor: sticker.color,
+                transform: `rotate(${sticker.rotate})`,
+                top: sticker.top,
+                left: sticker.left,
+                boxShadow: "0.15rem 0.15rem 0px 0px rgba(0,0,0,0.5)",
+              }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * i, duration: 0.5 }}
+            >
+              {sticker.text}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Main hero content */}
+        <div className="container mx-auto px-4 h-full flex flex-col justify-center items-center relative py-10">
+          <motion.div
+            className="text-center max-w-3xl relative z-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="relative inline-block mb-4">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#E76F51] via-[#FF9F1C] to-[#F72585] blur-lg opacity-50"></div>
+              <h1 className="relative text-3xl md:text-5xl font-black tracking-tight transform -rotate-1">
+                TEENAGE WASTELAND
+              </h1>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-sm p-3 border border-white transform rotate-1 mb-4">
+              <p className="text-sm md:text-base font-mono">
+                A brutally honest chronicle of adolescent evolution from bell-bottoms to TikTok
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-1.5 mb-6 max-w-2xl mx-auto">
+              <div className="bg-[#E76F51] p-1.5 text-[8px] sm:text-[10px] border border-black transform -rotate-1">
+                <p className="font-bold">WARNING:</p>
+                <p>Contains extreme nostalgia and embarrassing fashion choices.</p>
+              </div>
+              <div className="bg-[#4ECDC4] p-1.5 text-[8px] sm:text-[10px] border border-black transform rotate-2">
+                <p className="font-bold">SIDE EFFECTS:</p>
+                <p>May cause uncontrollable urges to cringe at your former self.</p>
+              </div>
+              <div className="bg-[#7209B7] p-1.5 text-[8px] sm:text-[10px] border border-black text-white transform -rotate-1">
+                <p className="font-bold">DISCLAIMER:</p>
+                <p>Every generation thinks they invented cool.</p>
+              </div>
+            </div>
+
+            <motion.button
+              className="group relative bg-white text-black px-4 py-2 text-sm font-bold border border-black transform hover:rotate-0 transition-transform duration-300 rotate-1"
+              style={{ boxShadow: "0.25rem 0.25rem 0px 0px rgba(0,0,0,0.7)" }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => {
+                const firstSection = document.querySelector(".decade-section")
+                if (firstSection) {
+                  firstSection.scrollIntoView({ behavior: "smooth" })
+                }
+              }}
+            >
+              EXPLORE OUR TIMELINE
+              <motion.div
+                className="inline-block ml-2"
+                animate={{ y: [0, 3, 0] }}
+                transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </motion.div>
+            </motion.button>
+          </motion.div>
+        </div>
+
+        {/* Overlapping text for transition to first section */}
+        <div className="absolute bottom-0 left-0 right-0 z-30 overflow-hidden pointer-events-none">
+          <div className="relative h-16">
+            <motion.div
+              className="absolute -bottom-2 w-full text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+            >
+              <span className="text-3xl md:text-5xl font-black tracking-tighter text-white opacity-20 uppercase">
+                THE TEENAGE ERA
+              </span>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Header */}
       <header className="sticky top-0 z-40 backdrop-blur-md bg-black/70 p-2 flex justify-between items-center border-b-2 border-white">
         <div className="text-lg font-bold tracking-tighter flex items-center gap-1">
@@ -61,7 +181,7 @@ export default function TimelinePage() {
       <main className="relative">
         {/* 70s Section */}
         <section
-          className="decade-section min-h-screen p-3 md:p-6 bg-[#F4A261] text-[#22223B]"
+          className="decade-section min-h-screen md:min-h-[80vh] p-3 md:p-6 bg-[#F4A261] text-[#22223B]"
           style={{ borderRadius: "0px" }}
         >
           <motion.div
@@ -167,7 +287,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/1970s.jpg?height=600&width=400"
                     alt="70s Teens"
                     fill
                     className="object-cover border-2 border-[#E76F51]"
@@ -195,7 +315,7 @@ export default function TimelinePage() {
 
         {/* 80s Section */}
         <section
-          className="decade-section min-h-screen p-3 md:p-6 bg-[#FF6B6B] text-[#1A535C]"
+          className="decade-section min-h-screen md:min-h-[80vh] p-3 md:p-6 bg-[#FF6B6B] text-[#1A535C]"
           style={{ borderRadius: "10px" }}
         >
           <motion.div
@@ -260,7 +380,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/1980s.png?height=600&width=400"
                     alt="80s Teens"
                     fill
                     className="object-cover border-2 border-[#FFE66D]"
@@ -349,7 +469,7 @@ export default function TimelinePage() {
 
         {/* 90s Section */}
         <section
-          className="decade-section min-h-screen p-3 md:p-6 bg-[#6D597A] text-[#EAAC8B]"
+          className="decade-section min-h-screen md:min-h-[80vh] p-3 md:p-6 bg-[#6D597A] text-[#EAAC8B]"
           style={{ borderRadius: "15px" }}
         >
           <motion.div
@@ -462,7 +582,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/1990s.webp?height=600&width=400"
                     alt="90s Teens"
                     fill
                     className="object-cover border-2 border-[#E56B6F]"
@@ -492,7 +612,7 @@ export default function TimelinePage() {
 
         {/* 2000s Section */}
         <section
-          className="decade-section min-h-screen p-3 md:p-6 bg-[#457B9D] text-[#F1FAEE]"
+          className="decade-section min-h-screen md:min-h-[80vh] p-3 md:p-6 bg-[#457B9D] text-[#F1FAEE]"
           style={{ borderRadius: "20px" }}
         >
           <motion.div
@@ -567,7 +687,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/2000s.webp?height=600&width=400"
                     alt="2000s Teens"
                     fill
                     className="object-cover border-2 border-[#A8DADC]"
@@ -645,7 +765,7 @@ export default function TimelinePage() {
 
         {/* 2010s Section */}
         <section
-          className="decade-section min-h-screen p-3 md:p-6 bg-[#2EC4B6] text-[#011627]"
+          className="decade-section min-h-screen md:min-h-[80vh] p-3 md:p-6 bg-[#2EC4B6] text-[#011627]"
           style={{ borderRadius: "25px" }}
         >
           <motion.div
@@ -780,7 +900,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform rotate-3 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/2010s.jpg?height=600&width=400"
                     alt="2010s Teens"
                     fill
                     className="object-cover border-2 border-[#FF9F1C]"
@@ -810,7 +930,7 @@ export default function TimelinePage() {
 
         {/* 2020s Section */}
         <section
-          className="decade-section min-h-screen p-3 md:p-6 bg-[#7209B7] text-[#F8EDEB]"
+          className="decade-section min-h-screen md:min-h-[80vh] p-3 md:p-6 bg-[#7209B7] text-[#F8EDEB]"
           style={{ borderRadius: "30px" }}
         >
           <motion.div
@@ -886,7 +1006,7 @@ export default function TimelinePage() {
               <div className="relative h-40 md:h-auto md:col-span-4">
                 <div className="absolute inset-0 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                   <Image
-                    src="/placeholder.svg?height=600&width=400"
+                    src="/2020s.jpg?height=600&width=400"
                     alt="2020s Teens"
                     fill
                     className="object-cover border-2 border-[#4CC9F0]"
@@ -962,7 +1082,7 @@ export default function TimelinePage() {
         </section>
 
         {/* End Quote Section */}
-        <section className="decade-section min-h-[40vh] p-3 md:p-6 bg-black text-white flex items-center justify-center">
+        <section className="decade-section min-h-[30vh] p-3 md:p-6 bg-black text-white flex items-center justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
